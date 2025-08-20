@@ -10,13 +10,15 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
+        $user = Auth::user(); // bisa null kalau belum login
 
-        $konsultasis = collect();
-        if ($user->role == 'user') {
+        $konsultasis = collect(); // default kosong
+
+        // Hanya ambil data kalau user sudah login dan role-nya 'user'
+        if ($user && $user->role === 'user') {
             $konsultasis = Konsultasi::with('konselor', 'user')->where('user_id', $user->id)->where('status', 'Proses')->latest()->get();
         }
 
-        return view('home', compact('konsultasis'));
+        return view('home', compact('konsultasis', 'user'));
     }
 }
