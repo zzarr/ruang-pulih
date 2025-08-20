@@ -36,7 +36,7 @@ Route::get('/jenis-kasus/data', [JenisKasusController::class, 'data'])->name('je
 Route::post('/konsultasi/store', [KonsultasiController::class, 'store'])->name('konsultasi.store');
 
 Route::get('/konsultasi/{id}', [KonsultasiController::class, 'showChat'])->name('konsultasi.show');
-Route::post('/konsultasi/{id}/send', [KonsultasiController::class, 'send'])->name('konsultasi.send');
+Route::post('/konsultasi/{id}/send', [KonsultasiController::class, 'send'])->name('user.konsultasi.send');
 
 Route::group(
     [

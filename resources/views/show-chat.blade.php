@@ -43,7 +43,8 @@
 
                             <!-- Footer -->
                             <div class="chat-footer border-top p-3">
-                                <form id="chatForm" method="POST" action="{{ route('konsultasi.send', $konsultasi->id) }}"
+                                <form id="chatForm" method="POST"
+                                    action="{{ route('user.konsultasi.send', $konsultasi->id) }}"
                                     class="d-flex align-items-center gap-2">
                                     @csrf
                                     <input type="text" name="pesan" class="form-control" placeholder="Ketik pesan..."

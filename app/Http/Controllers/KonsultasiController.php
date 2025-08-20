@@ -82,7 +82,13 @@ class KonsultasiController extends Controller
         $chat->pesan = $request->pesan;
         $chat->save();
 
-        return redirect()->route('kader.konsultasi.chat', $id)->with('success', 'Pesan berhasil dikirim');
+        $user = Auth::user();
+
+        if ($user->role === 'kader') {
+            return redirect()->route('kader.konsultasi.chat', $id)->with('success', 'Pesan berhasil dikirim');
+        } elseif ($user->role === 'user') {
+            return redirect()->route('konsultasi.show', $id)->with('success', 'Pesan berhasil dikirim');
+        }
     }
 
     // Daftar konsultasi untuk konselor
